@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}hackinghat.com{% endblock %}
+{% block content %}
+  <h1>Latest posts</h1>
+  <ul class="post-list">
+    {% for p in posts %}
+    <li>
+      <a class="post-link" href="{{ root }}posts/{{ p.slug }}.html">{{ p.title }}</a>
+      <time class="post-date">{{ p.date }}</time>
+      <div class="post-summary">{{ p.summary }}</div>
+      <div class="post-tags">
+        {% for tag in p.tags %}
+        <a href="{{ root }}tags/{{ tag.slug }}.html">#{{ tag.name }}</a>
+        {% endfor %}
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

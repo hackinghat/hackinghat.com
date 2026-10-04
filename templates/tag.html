@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}#{{ tag.name }} · hackinghat.com{% endblock %}
+{% block content %}
+  <h1>Posts tagged #{{ tag.name }}</h1>
+  <ul class="post-list">
+    {% for p in posts %}
+    <li>
+      <a class="post-link" href="{{ root }}posts/{{ p.slug }}.html">{{ p.title }}</a>
+      <time class="post-date">{{ p.date }}</time>
+      <div class="post-summary">{{ p.summary }}</div>
+    </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

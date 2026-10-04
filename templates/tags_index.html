@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Tags · hackinghat.com{% endblock %}
+{% block content %}
+  <h1>Tags</h1>
+  <ul class="tag-list">
+    {% for tag in tags %}
+    <li>
+      <a href="{{ root }}tags/{{ tag.slug }}.html">#{{ tag.name }}</a>
+      <span class="count">{{ tag.count }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
