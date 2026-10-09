@@ -27,6 +27,7 @@ ROOT = Path(__file__).resolve().parent
 POSTS_DIR = ROOT / "posts"
 TEMPLATES_DIR = ROOT / "templates"
 ASSETS_DIR = ROOT / "assets"
+ABOUT_FILE = ROOT / "about.md"
 DOCS_DIR = ROOT / "docs"
 
 # Leading "YYYY-MM-DD-" on a post filename is a convention; stripped for the slug.
@@ -55,6 +56,12 @@ def load_posts():
         })
     posts.sort(key=lambda p: p["date"], reverse=True)
     return posts
+
+
+def load_about():
+    fm = frontmatter.loads(ABOUT_FILE.read_text(encoding="utf-8"))
+    html = markdown.Markdown(extensions=["fenced_code", "tables", "smarty"]).convert(fm.content)
+    return {"title": fm.get("title", "About"), "html": html}
 
 
 def build_tags(posts):
@@ -97,6 +104,7 @@ def main():
     posts = load_posts()
     tags = build_tags(posts)
     archive = build_archive(posts)
+    about = load_about()
 
     env = Environment(
         loader=FileSystemLoader(str(TEMPLATES_DIR)),
@@ -113,9 +121,10 @@ def main():
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(env.get_template(template).render(**ctx), encoding="utf-8")
 
-    render("index.html", "index.html", {"posts": posts}, root="")
+    render("index.html", "index.html", {"post": posts[0], "older": posts[1:]}, root="")
     render("archive.html", "archive.html", {"archive": archive}, root="")
     render("tags_index.html", "tags/index.html", {}, root="../")
+    render("about.html", "about.html", {"about": about}, root="")
 
     for p in posts:
         render("post.html", f"posts/{p['slug']}.html", {"post": p}, root="../")

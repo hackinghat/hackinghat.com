@@ -7,6 +7,21 @@
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="stylesheet" href="assets/style.css">
   
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false }
+        ],
+        throwOnError: false
+      });
+    });
+  </script>
+
 </head>
 <body>
   <header class="site-header">
@@ -19,29 +34,33 @@
     <a href="index.html">Home</a>
     <a href="archive.html">Archive</a>
     <a href="tags/index.html">Tags</a>
+    <a href="about.html">About</a>
     <span class="nav-tags">
       
-      <a href="tags/origin.html">#origin</a>
+      <a href="tags/comment.html">#comment</a>
       
     </span>
   </nav>
   <main class="content">
     
-  <h1>Latest posts</h1>
-  <ul class="post-list">
-    
-    <li>
-      <a class="post-link" href="posts/notes-from-the-machine.html">Notes from the machine</a>
-      <time class="post-date">2026-10-04</time>
-      <div class="post-summary">What&#39;s with the hat</div>
-      <div class="post-tags">
-        
-        <a href="tags/origin.html">#origin</a>
-        
-      </div>
-    </li>
-    
-  </ul>
+  
+  <article class="post">
+    <h1 class="post-title">Notes from the machine</h1>
+    <div class="post-meta">
+      <time>2026-10-04</time>
+      
+      <a class="tag" href="tags/comment.html">#comment</a>
+      
+    </div>
+    <div class="post-body">
+      <p>Inspired by a post I read a few months ago about AI replacing SaaS I decided wordpress had to go.  A github hosted self-publish site, is about $9 cheaper a month than paying AWS LightSail to run a service for Russian speaking spammers to try and SEO me with.   </p>
+<p>So, well .. goodbye to all that, and as of now the old content is gone.  If someone emails <a href="mailto:steve@hackinghat.com">me</a> I might bring some of the old posts back, but I feel no archival compulsion to do that.  But who am I kidding - I&rsquo;ll get exactly zero emails, prove me wrong.</p>
+<p>So why am I doing this?  This is a really interesting time in our collective history.  And that&rsquo;s it really.  Enough said, apart from the fact I need to write to make sense of it sometimes and to know how we got here.</p>
+<p>These notes will be in my note taking app of course, so I can ask AI what they all mean in aggregate (even before I really know what they all mean).  This is part of what I&rsquo;m hear to document.   Read along if you want 😀.</p>
+    </div>
+  </article>
+
+  
 
   </main>
   <footer class="site-footer">

@@ -16,7 +16,7 @@
   </defs>
 
   <!-- brim -->
-  <g transform="translate(50 82) scale(1.12 1.45) translate(-50 -82)">
+  <g transform="translate(50 82) scale(1.12 1.8) translate(-50 -82)">
     <path d="M 4 84 L 6 80 Q 14 75 26 74 L 28 73 L 31 74.5 Q 42 72.5 50 73 L 53 74 L 55 72.8 Q 72 73.5 84 76 L 86 75 Q 93 78 96 81 L 93 83 L 97 84.5 L 94 87 Q 85 90 72 91 L 70 92.2 L 67 90.8 Q 55 92 50 91 L 47 92 L 44 90.8 Q 28 90.5 17 88 L 15 89 L 12 87 Q 7 86.5 4 84 Z"
           fill="url(#brimgrad)"/>
     <g fill="none" stroke="#06240f" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">

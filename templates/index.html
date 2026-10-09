@@ -1,9 +1,11 @@
-{% extends "base.html" %}
+{% extends "post.html" %}
 {% block title %}hackinghat.com{% endblock %}
 {% block content %}
-  <h1>Latest posts</h1>
+  {{ super() }}
+  {% if older %}
+  <h2>Older posts</h2>
   <ul class="post-list">
-    {% for p in posts %}
+    {% for p in older %}
     <li>
       <a class="post-link" href="{{ root }}posts/{{ p.slug }}.html">{{ p.title }}</a>
       <time class="post-date">{{ p.date }}</time>
@@ -16,4 +18,5 @@
     </li>
     {% endfor %}
   </ul>
+  {% endif %}
 {% endblock %}
