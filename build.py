@@ -13,6 +13,7 @@ import re
 import shutil
 from pathlib import Path
 
+import cairosvg
 import frontmatter
 import markdown
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -79,6 +80,14 @@ def clean_docs():
     (DOCS_DIR / "CNAME").write_text("hackinghat.com\n")
 
 
+def build_icons():
+    """Render the PNG logo and favicon from the master SVG into docs/assets."""
+    svg = ASSETS_DIR / "wizard-hat.svg"
+    out = DOCS_DIR / "assets"
+    cairosvg.svg2png(url=str(svg), write_to=str(out / "wizard-hat.png"), output_width=128, output_height=128)
+    cairosvg.svg2png(url=str(svg), write_to=str(out / "favicon.png"), output_width=64, output_height=64)
+
+
 def main():
     posts = load_posts()
     tags = build_tags(posts)
@@ -91,6 +100,7 @@ def main():
 
     clean_docs()
     shutil.copytree(ASSETS_DIR, DOCS_DIR / "assets")
+    build_icons()
 
     def render(template, dest, context, root):
         ctx = {"root": root, "tags": tags, **context}
