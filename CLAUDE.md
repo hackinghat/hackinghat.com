@@ -2,6 +2,8 @@
 
 This is a static website that will be served from GitHub pages.  It can contain static java script but has no active server side components.
 
+Style rules live in [STYLE.md](STYLE.md). Follow them, and record any future style change in that guide.
+
 **Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
 
 ## 1. Think Before Coding
