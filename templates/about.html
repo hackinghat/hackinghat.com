@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ about.title }} · hackinghat.com{% endblock %}
+{% block content %}
+  <article class="post">
+    <h1 class="post-title">{{ about.title }}</h1>
+    <div class="post-body">
+      {{ about.html | safe }}
+    </div>
+  </article>
+{% endblock %}
