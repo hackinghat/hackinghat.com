@@ -6,11 +6,16 @@ navigation pages (index, archive, per-tag) into docs/, which GitHub Pages
 serves. Run this before committing and pushing.
 
     pip install -r requirements.txt
-    python build.py
+    python build.py           # build into docs/
+    python build.py --serve   # build, then serve docs/ and open a browser
 """
 
+import argparse
+import functools
+import http.server
 import re
 import shutil
+import webbrowser
 from pathlib import Path
 
 import cairosvg
@@ -122,5 +127,25 @@ def main():
     print(f"Built {len(posts)} post(s), {len(tags)} tag(s) into docs/")
 
 
+def serve(port=8000):
+    """Serve docs/ locally and open it in a browser. Ctrl-C to stop."""
+    handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(DOCS_DIR))
+    with http.server.ThreadingHTTPServer(("127.0.0.1", port), handler) as httpd:
+        url = f"http://127.0.0.1:{port}/"
+        print(f"Serving {url} (Ctrl-C to stop)")
+        webbrowser.open(url)
+        try:
+            httpd.serve_forever()
+        except KeyboardInterrupt:
+            pass
+
+
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Build the hackinghat.com static site into docs/.",
+    )
+    parser.add_argument("--serve", action="store_true", help="after building, serve docs/ locally and open a browser")
+    args = parser.parse_args()
     main()
+    if args.serve:
+        serve()
